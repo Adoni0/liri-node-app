@@ -43,7 +43,37 @@ function concert(){
     console.log(concertInput);
     axios.get("https://rest.bandsintown.com/artists/" + concertInput + "/events?app_id=codingbootcamp").then(function(data){
         console.log(data.data);
+        
     })
 }
 
+function song() {
+    var songInput = process.argv.slice(3).join(' ');
+    console.log(songInput);
+    axios.get("https://accounts.spotify.com/authorize?" + songInput + spotify)
+}
 
+function movie(){
+    var movieInput = process.argv.slice(3).join(' ');
+    axios.get('http://www.omdbapi.com/?t=' + movieInput + '=&y=&plot=short&apikey=trilogy&').then(function(data){
+    
+        console.log(data);
+    })
+    .catch(function(error){
+        if(error.response){
+      console.log("---------------Data---------------");
+      console.log(error.response.data);
+      console.log("---------------Status---------------");
+      console.log(error.response.status);
+      console.log("---------------Status---------------");
+      console.log(error.response.headers);
+        }else if (error.request) {
+            // The request was made but no response was received
+            // `error.request` is an object that comes back with details pertaining to the error that occurred.
+            console.log(error.request);
+          } else {
+            // Something happened in setting up the request that triggered an Error
+            console.log("Error", error.message);
+          }
+    })
+}
