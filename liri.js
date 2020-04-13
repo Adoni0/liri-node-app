@@ -56,8 +56,28 @@ function song() {
 function movie(){
     var movieInput = process.argv.slice(3).join(' ');
     axios.get('http://www.omdbapi.com/?t=' + movieInput + '=&y=&plot=short&apikey=trilogy&').then(function(data){
-    
-        console.log(data);
+
+        var movieTitle = data.data.Title;
+        var movieYear = data.data.Year;
+        var movieImdb = data.data.imdbRating;
+        var movieRt;
+        var movieProduce = data.data.Country;
+        var movieLanguage = data.data.Language;
+        var moviePlot = data.data.Plot;
+        var movieActors = data.data.Actors;
+
+        console.log('Movie Title: ' + movieTitle);
+        console.log('Year of release: ' + movieYear);
+        console.log('IMDB rating: ' + movieImdb);
+        console.log('Country: ' + movieProduce);
+        console.log('Language: ' + movieLanguage);
+        console.log('Plot: ' + moviePlot);
+        console.log('Actors: ' + movieActors);
+
+        // if(parseFloat.argv[3] === ''){
+        //     movieInput = 'Mr. Nobody';
+        // }
+
     })
     .catch(function(error){
         if(error.response){
@@ -76,4 +96,16 @@ function movie(){
             console.log("Error", error.message);
           }
     })
+}
+
+function doWhat(){
+    fs.readFile('random.txt', 'utf8', function (error, data) {
+        if (error) {
+            console.log(error);
+            return;
+        }
+
+
+        
+})
 }
