@@ -42,10 +42,34 @@ function concert(){
     var concertInput = process.argv.slice(3).join(' ');
     console.log(concertInput);
     axios.get("https://rest.bandsintown.com/artists/" + concertInput + "/events?app_id=codingbootcamp").then(function(data){
-        console.log(data.data);
-        
+        // console.log(data.data);
+        for(let i = 0; i < data.data.length; i++){
+            var venueName = data.data.venue.name;
+            var venueLocation = data.data.venue.city;
+            var dateArr = data.data.datetime.split('-');//use momentJS
+            var date = moment().months(dateArr[1]).days(dateArr[2]).year(dateArr[0]);
+            console.log(venueName);
+            console.log(venueLocation);
+            console.log(date);
+        }
+
     })
-}
+    .catch(function(error){
+        if(error.response){
+      console.log("---------------Data---------------");
+      console.log(error.response.data);
+      console.log("---------------Status---------------");
+      console.log(error.response.status);
+      console.log("---------------Status---------------");
+      console.log(error.response.headers);
+        }else if (error.request) {
+            
+            console.log(error.request);
+          } else {
+            console.log("Error", error.message);
+          }
+    })
+};
 
 function song() {
     var songInput = process.argv.slice(3).join(' ');
