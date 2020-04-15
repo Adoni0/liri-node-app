@@ -14,11 +14,11 @@ console.log(userInput, userSearch);
 function startApp(command, search){
     switch(command){
        case 'concert-this':
-           concert(); 
+           concert(search); 
            break;
    
         case 'spotify-this-song':
-            song();
+            song(search);
             break;
 
         case 'movie-this':
@@ -38,19 +38,19 @@ function startApp(command, search){
 startApp(userInput, userSearch);
 
 
-function concert(){
-    var concertInput = process.argv.slice(3).join(' ');
-    console.log(concertInput);
+function concert(concertInput){
+    
     axios.get("https://rest.bandsintown.com/artists/" + concertInput + "/events?app_id=codingbootcamp").then(function(data){
-        // console.log(data.data);
+        console.log(data.data[0].venue.name);
+        var response = data.data;
         for(let i = 0; i < data.data.length; i++){
-            var venueName = data.data.venue.name;
-            var venueLocation = data.data.venue.city;
-            var dateArr = data.data.datetime.split('-');//use momentJS
-            var date = moment().months(dateArr[1]).days(dateArr[2]).year(dateArr[0]);
-            console.log(venueName);
-            console.log(venueLocation);
-            console.log(date);
+            var venueName = response[i].venue.name;
+            var venueLocation = response[i].venue.city;
+            
+            var date = moment(response[i].datetime).format('MM/DD/YYYY');
+            console.log('Venue Name: '   + venueName);
+            console.log('Venue Location: ' + venueLocation);
+            console.log('Date: ' + date);
         }
 
     })
@@ -71,10 +71,30 @@ function concert(){
     })
 };
 
-function song() {
-    var songInput = process.argv.slice(3).join(' ');
-    console.log(songInput);
-    axios.get("https://accounts.spotify.com/authorize?" + songInput + spotify)
+function artists(artist){
+    return artist.name;
+}
+
+function song(songInput) {
+    if(songInput === undefined){
+        songInput = 'The Sign';
+    }
+    spotify.search({ type: 'track', query: songInput }, function(err, data) {
+        if(err){
+            console.log(err)
+        }
+        var items = data.tracks.items;
+        // console.log(items[0].artists);
+        for(let i = 0; i < items.length; i++){
+            var name = items[i].artists.map(artists)
+            console.log(name.toString());
+            console.log(items[i].name);
+            console.log(items[i].preview_url);
+            console.log(items[i].album.name);
+        }
+
+
+    })
 }
 
 function movie(){
@@ -128,7 +148,10 @@ function doWhat(){
             console.log(error);
             return;
         }
-
+        var random = data.split(',');
+        console.log(random);
+        // startApp(random[0], random[1]);
+        
 
         
 })
