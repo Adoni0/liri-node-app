@@ -41,7 +41,7 @@ startApp(userInput, userSearch);
 function concert(concertInput){
     
     axios.get("https://rest.bandsintown.com/artists/" + concertInput + "/events?app_id=codingbootcamp").then(function(data){
-        console.log(data.data[0].venue.name);
+        // console.log(data.data[0].venue.name);
         var response = data.data;
         for(let i = 0; i < data.data.length; i++){
             var venueName = response[i].venue.name;
@@ -51,6 +51,7 @@ function concert(concertInput){
             console.log('Venue Name: '   + venueName);
             console.log('Venue Location: ' + venueLocation);
             console.log('Date: ' + date);
+            console.log('---------------Next Concert---------------');
         }
 
     })
@@ -87,10 +88,11 @@ function song(songInput) {
         // console.log(items[0].artists);
         for(let i = 0; i < items.length; i++){
             var name = items[i].artists.map(artists)
-            console.log(name.toString());
-            console.log(items[i].name);
-            console.log(items[i].preview_url);
-            console.log(items[i].album.name);
+            console.log('Artist: ' + name.toString());
+            console.log('Song: ' + items[i].name);
+            console.log('Preview song: ' + items[i].preview_url);
+            console.log('Album: ' + items[i].album.name);
+            console.log('-----------------Next Song--------------');
         }
 
 
@@ -149,10 +151,8 @@ function doWhat(){
             return;
         }
         var random = data.split(',');
-        console.log(random);
-        // startApp(random[0], random[1]);
-        
-
+        // console.log(random);
+        startApp(random[0], random[1]);
         
 })
 }
