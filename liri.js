@@ -106,7 +106,7 @@ function movie(){
         var movieTitle = data.data.Title;
         var movieYear = data.data.Year;
         var movieImdb = data.data.imdbRating;
-        var movieRt;
+        var movieRt = data.data.Ratings[1].Value;
         var movieProduce = data.data.Country;
         var movieLanguage = data.data.Language;
         var moviePlot = data.data.Plot;
@@ -115,14 +115,11 @@ function movie(){
         console.log('Movie Title: ' + movieTitle);
         console.log('Year of release: ' + movieYear);
         console.log('IMDB rating: ' + movieImdb);
+        console.log('Rotten Tomatoes rating: ' + movieRt)
         console.log('Country: ' + movieProduce);
         console.log('Language: ' + movieLanguage);
         console.log('Plot: ' + moviePlot);
         console.log('Actors: ' + movieActors);
-
-        // if(parseFloat.argv[3] === ''){
-        //     movieInput = 'Mr. Nobody';
-        // }
 
     })
     .catch(function(error){
