@@ -1,5 +1,5 @@
 # liri-node-app
-This app will act as a language interpreter, utilizing the API's from bandsintown, Spotify, and OMDB. The app is designed to work on the command line of your terminal or gitbash. To begin, the user must enter 'node liri.js' followed by the command desired. 
+This app will act as a language interpreter, utilizing the API's from bandsintown, Spotify, and OMDB. The app is designed to work with Node on the command line of your terminal or gitbash. To begin, the user must enter 'node liri.js' followed by the command desired. The app is set up by a series of switch cases in a javascript file that can recognize the below terminal commands and then call the correct API based upon the users entered command.
 
 -----------------------------------------------------------------------------------
 Terminal commands
