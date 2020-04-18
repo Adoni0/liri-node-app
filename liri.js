@@ -22,7 +22,7 @@ function startApp(command, search) {
             break;
 
         case 'movie-this':
-            movie();
+            movie(search);
             break;
 
         case 'do-what-it-says':
@@ -99,8 +99,8 @@ function song(songInput) {
     })
 }
 
-function movie() {
-    var movieInput = process.argv.slice(3).join(' ');
+function movie(movieInput) {
+    // var movieInput = process.argv.slice(3).join(' ');
 
     if(movieInput === ''){
         movieInput = 'Mr. Nobody';
