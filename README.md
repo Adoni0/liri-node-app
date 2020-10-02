@@ -1,10 +1,8 @@
 # liri-node-app
 This app will act as a language interpreter, utilizing the API's from bandsintown, Spotify, and OMDB. The app is designed to work with Node on the command line of your terminal or gitbash. To begin, the user must enter 'node liri.js' followed by the command desired. The app is set up by a series of switch cases in a javascript file that can recognize the below terminal commands and then call the correct API based upon the users entered command.
 
-Deployed github pages link: https://adoni0.github.io/liri-node-app/
-
 -----------------------------------------------------------------------------------
-Terminal commands
+## Terminal commands
 1. concert-this <band/artist name>
     this command calls the bandsintown API and displays information pertaining to the venue of the Artists upcoming concerts. Liri will then show the user the venue name, venue location, and date of the venue searched.
     
